@@ -1375,7 +1375,7 @@ process Sentieon_Dedup {
 // STEP 3: CREATING RECALIBRATION TABLES
 
 process BaseRecalibrator {
-    label 'cpus_1'
+    label 'cpus_4'
 
     tag "${idPatient}-${idSample}-${intervalBed.baseName}"
 
