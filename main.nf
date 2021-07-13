@@ -774,7 +774,7 @@ else inputPairReadsTrimGalore.close()
 
 process FastQCFQ {
     label 'FastQC'
-    label 'process_medium'
+    label 'cpus_4'
 
     tag "${idPatient}-${idRun}"
 
@@ -790,7 +790,7 @@ process FastQCFQ {
 
     script:
     """
-    fastqc -t 2 -q ${idSample}_${idRun}_R1.fastq.gz ${idSample}_${idRun}_R2.fastq.gz
+    fastqc -t 4 -q ${idSample}_${idRun}_R1.fastq.gz ${idSample}_${idRun}_R2.fastq.gz
     """
 }
 
