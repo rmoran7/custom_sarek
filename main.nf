@@ -1842,7 +1842,7 @@ bamFreebayesSingle = bamFreebayesSingleNoIntervals.combine(intFreebayesSingle)
 
 process HaplotypeCaller {
     label 'memory_singleCPU_task_sq'
-    label 'cpus_2'
+    label 'cpus_4'
 
     tag "${idSample}-${intervalBed.baseName}"
 
@@ -2281,7 +2281,7 @@ vcfFreeBayes = vcfFreeBayes.groupTuple(by:[0,1,2])
 process Mutect2 {
     tag "${idSampleTumor}_vs_${idSampleNormal}-${intervalBed.baseName}"
 
-    label 'cpus_1'
+    label 'cpus_2'
 
     input:
         set idPatient, idSampleNormal, file(bamNormal), file(baiNormal), idSampleTumor, file(bamTumor), file(baiTumor), file(intervalBed) from pairBamMutect2
@@ -2328,7 +2328,7 @@ mutect2StatsPair = mutect2StatsPair.groupTuple(by:[0,1])
 process Mutect2Single {
     tag "${idSampleTumor}-${intervalBed.baseName}"
 
-    label 'cpus_1'
+    label 'cpus_2'
 
     input:
         set idPatient, idSampleTumor, file(bamTumor), file(baiTumor), file(intervalBed) from singleBamMutect2
