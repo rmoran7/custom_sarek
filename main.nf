@@ -1526,7 +1526,7 @@ bamApplyBQSR = bamApplyBQSR.dump(tag:'BAM + BAI + RECAL TABLE + INT')
 
 process ApplyBQSR {
     label 'memory_singleCPU_2_task'
-    label 'cpus_2'
+    label 'cpus_4'
 
     tag "${idPatient}-${idSample}-${intervalBed.baseName}"
 
