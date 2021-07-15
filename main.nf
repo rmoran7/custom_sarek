@@ -2305,7 +2305,9 @@ process Mutect2 {
     // please make a panel-of-normals, using at least 40 samples
     // https://gatkforums.broadinstitute.org/gatk/discussion/11136/how-to-call-somatic-mutations-using-gatk4-mutect2
     PON = params.pon ? "--panel-of-normals ${pon}" : ""
-    intervalsOptions = params.no_intervals ? "" : "-L ${intervalBed}"
+    // intervalsOptions = params.no_intervals ? "" : "-L ${intervalBed}"
+    intervalsOptions = params.no_intervals ? params.target_bed ? "-L ${params.target_bed}" : "-L ${germlineResource}" : "-L ${intervalBed}"
+
     softClippedOption = params.ignore_soft_clipped_bases ? "--dont-use-soft-clipped-bases true" : ""
     """
     # Get raw calls
