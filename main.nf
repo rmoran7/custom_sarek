@@ -1773,7 +1773,7 @@ samtoolsStatsReport = samtoolsStatsReport.dump(tag:'SAMTools')
 bamBamQC = bamMappedBamQC.mix(bam_recalibrated_bamqc)
 
 process BamQC {
-    label '95 GB'
+    memory '95 GB'
     label 'cpus_12'
 
     tag "${idPatient}-${idSample}"
