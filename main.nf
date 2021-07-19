@@ -1029,7 +1029,7 @@ else {
 process MapReads {
     
     memory '256 GB'
-    
+    cpus '64'
 
     tag "${idPatient}-${idRun}"
 
