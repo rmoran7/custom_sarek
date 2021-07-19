@@ -1027,8 +1027,9 @@ else {
 }
 
 process MapReads {
+    
+    label 'cpus_max'
     label 'memory_max'
-    cpus '32'
 
     tag "${idPatient}-${idRun}"
 
