@@ -1028,8 +1028,8 @@ else {
 
 process MapReads {
     
-    label 'cpus_max'
-    label 'memory_singleCPU_2_task'
+    memory '256 GB'
+    
 
     tag "${idPatient}-${idRun}"
 
