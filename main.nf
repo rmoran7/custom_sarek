@@ -1028,7 +1028,8 @@ else {
 
 process MapReads {
     
-    machineType 'mem3_ssd3_x48'
+    label 'cpus_max'
+    label 'memory_max'
 
     tag "${idPatient}-${idRun}"
 
