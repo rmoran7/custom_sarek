@@ -774,7 +774,8 @@ else inputPairReadsTrimGalore.close()
 
 process FastQCFQ {
     label 'FastQC'
-    label 'cpus_4'
+    label 'cpus_1'
+    disk '50 GB'
 
     tag "${idPatient}-${idRun}"
 
@@ -1375,7 +1376,8 @@ process Sentieon_Dedup {
 // STEP 3: CREATING RECALIBRATION TABLES
 
 process BaseRecalibrator {
-    label 'cpus_4'
+    label 'cpus_1'
+    disk '65'
 
     tag "${idPatient}-${idSample}-${intervalBed.baseName}"
 
@@ -1526,7 +1528,7 @@ bamApplyBQSR = bamApplyBQSR.dump(tag:'BAM + BAI + RECAL TABLE + INT')
 
 process ApplyBQSR {
     label 'memory_singleCPU_2_task'
-    label 'cpus_4'
+    disk '70 GB'
 
     tag "${idPatient}-${idSample}-${intervalBed.baseName}"
 
@@ -1771,8 +1773,8 @@ samtoolsStatsReport = samtoolsStatsReport.dump(tag:'SAMTools')
 bamBamQC = bamMappedBamQC.mix(bam_recalibrated_bamqc)
 
 process BamQC {
-    label 'memory_max'
-    label 'cpus_16'
+    label '95 GB'
+    label 'cpus_12'
 
     tag "${idPatient}-${idSample}"
 
@@ -1842,7 +1844,8 @@ bamFreebayesSingle = bamFreebayesSingleNoIntervals.combine(intFreebayesSingle)
 
 process HaplotypeCaller {
     label 'memory_singleCPU_task_sq'
-    label 'process_medium'
+    memory '16 GB'
+    
 
     tag "${idSample}-${intervalBed.baseName}"
 
@@ -2330,7 +2333,8 @@ mutect2StatsPair = mutect2StatsPair.groupTuple(by:[0,1])
 process Mutect2Single {
     tag "${idSampleTumor}-${intervalBed.baseName}"
 
-    label 'process_medium'
+    label 'cpus_1'
+    memory '32 GB'
 
     input:
         set idPatient, idSampleTumor, file(bamTumor), file(baiTumor), file(intervalBed) from singleBamMutect2
