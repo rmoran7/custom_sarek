@@ -1134,7 +1134,8 @@ singleBamSentieon = singleBamSentieon.dump(tag:'Single BAM')
 multipleBam = multipleBam.mix(multipleBamSentieon)
 
 process MergeBamMapped {
-    label 'cpus_8'
+    label 'cpus_4'
+    disk '120 GB'
 
     tag "${idPatient}-${idSample}"
 
@@ -1669,7 +1670,8 @@ tsv_sentieon_recal_sample
 // STEP 4.5: MERGING THE RECALIBRATED BAM FILES
 
 process MergeBamRecal {
-    label 'cpus_8'
+    label 'cpus_4'
+     disk '120 GB'
 
     tag "${idPatient}-${idSample}"
 
