@@ -1773,8 +1773,8 @@ samtoolsStatsReport = samtoolsStatsReport.dump(tag:'SAMTools')
 bamBamQC = bamMappedBamQC.mix(bam_recalibrated_bamqc)
 
 process BamQC {
-    memory '95 GB'
-    label 'cpus_12'
+    memory '50 GB'
+    cpus '8'
 
     tag "${idPatient}-${idSample}"
 
@@ -1845,6 +1845,7 @@ bamFreebayesSingle = bamFreebayesSingleNoIntervals.combine(intFreebayesSingle)
 process HaplotypeCaller {
     label 'memory_singleCPU_task_sq'
     memory '16 GB'
+    cpus '1'
     
 
     tag "${idSample}-${intervalBed.baseName}"
