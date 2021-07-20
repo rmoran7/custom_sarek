@@ -1377,7 +1377,7 @@ process Sentieon_Dedup {
 
 process BaseRecalibrator {
     label 'cpus_1'
-    disk '65'
+    disk '65 GB'
 
     tag "${idPatient}-${idSample}-${intervalBed.baseName}"
 
@@ -1773,8 +1773,8 @@ samtoolsStatsReport = samtoolsStatsReport.dump(tag:'SAMTools')
 bamBamQC = bamMappedBamQC.mix(bam_recalibrated_bamqc)
 
 process BamQC {
-    memory '50 GB'
-    cpus '8'
+    label 'memory_max'
+    label 'cpus_16'
 
     tag "${idPatient}-${idSample}"
 
