@@ -1028,8 +1028,7 @@ else {
 
 process MapReads {
     
-    label 'cpus_max'
-    tag "${idPatient}-${idRun}"
+    machineType 'mem3_ssd1_v2_x48'
 
     input:
         set idPatient, idSample, idRun, file(inputFile1), file(inputFile2) from inputPairReads
@@ -1775,8 +1774,7 @@ samtoolsStatsReport = samtoolsStatsReport.dump(tag:'SAMTools')
 bamBamQC = bamMappedBamQC.mix(bam_recalibrated_bamqc)
 
 process BamQC {
-    label 'memory_max'
-    label 'cpus_16'
+    machineType 'mem3_ssd1_x8'
 
     tag "${idPatient}-${idSample}"
 
