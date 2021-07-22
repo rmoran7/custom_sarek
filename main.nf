@@ -459,6 +459,7 @@ ch_software_versions_yaml = ch_software_versions_yaml.dump(tag:'SOFTWARE VERSION
 
 process BuildBWAindexes {
     tag "${fasta}"
+    machineType 'mem3_ssd1_v2_x16'
 
     publishDir params.outdir, mode: params.publish_dir_mode,
         saveAs: {params.save_reference ? "reference_genome/BWAIndex/${it}" : null }
@@ -474,7 +475,7 @@ process BuildBWAindexes {
     script:
     aligner = params.aligner == "bwa-mem2" ? "bwa-mem2" : "bwa"
     """
-    ${aligner} index ${fasta}
+    ${aligner} index -t ${task.cpus} ${fasta}
     """
 }
 
