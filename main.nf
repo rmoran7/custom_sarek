@@ -459,7 +459,7 @@ ch_software_versions_yaml = ch_software_versions_yaml.dump(tag:'SOFTWARE VERSION
 
 process BuildBWAindexes {
     tag "${fasta}"
-    machineType 'mem3_ssd1_v2_x16'
+    machineType 'mem3_ssd1_v2_x32'
 
     publishDir params.outdir, mode: params.publish_dir_mode,
         saveAs: {params.save_reference ? "reference_genome/BWAIndex/${it}" : null }
