@@ -418,6 +418,8 @@ process get_software_versions {
 
     script:
     aligner = params.aligner == "bwa-mem2" ? "bwa-mem2" : "bwa"
+    // manually adding for now
+    aligner="bwa-mem2"
     """
     alleleCounter --version &> v_allelecount.txt 2>&1 || true
     bcftools --version &> v_bcftools.txt 2>&1 || true
@@ -1030,6 +1032,7 @@ else {
 process MapReads {
 
     machineType 'mem3_ssd1_v2_x48'
+    tag "${idPatient}-${idRun}"
 
     input:
         set idPatient, idSample, idRun, file(inputFile1), file(inputFile2) from inputPairReads
