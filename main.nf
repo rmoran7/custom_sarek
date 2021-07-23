@@ -1059,7 +1059,7 @@ process MapReads {
     aligner = params.aligner == "bwa-mem2" ? "bwa-mem2" : "bwa"
     """
     ${convertToFastq}
-    ${aligner} mem -K 100000000 -R \"${readGroup}\" ${extra} -t 48 -M ${fasta} \
+    bwa-mem2 mem -K 100000000 -R \"${readGroup}\" ${extra} -t 48 -M ${fasta} \
     ${input} | \
     samtools sort --threads ${task.cpus} -m 2G - > ${idSample}_${idRun}.bam
     """
